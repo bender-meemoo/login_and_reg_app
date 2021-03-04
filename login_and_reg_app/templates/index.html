@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div>
+        <h1>Registration</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tag %} class="{{ message.tags }}"{% endif %}>{{ message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/createuser" method="POST">
+            {% csrf_token %}
+            <p>First Name <input type="text" name="fname" id=""></p>
+            <p>Last Name <input type="text" name="lname" id=""></p>
+            <p>Email <input type="text" name="useremail" id=""></p>
+            <p>Password <input type="text" name="pwd" id=""></p>
+            <p>Confirm PW <input type="text" name="confirmpwd" id=""></p>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div>
+            <h1>Login</h1>
+            <form action="/loginuser" method="POST">
+                {% csrf_token %}
+                <p>Email<input type="text" name="useremail" id=""></p>
+                <p>Password <input type="text" name="pwd" id=""></p>
+                <button type="submit">Log In</button>
+            </form>
+    </div>
+</body>
+</html>
